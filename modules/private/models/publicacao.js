@@ -5,6 +5,10 @@ exports.default = (api, mongoose) => {
     // create a new Schema
     const newSchema = new Schema({
 
+        user_id: {
+            type: Mixed,
+            required: false
+        },
         titulo: {
             type: String,
             required: true
@@ -13,6 +17,22 @@ exports.default = (api, mongoose) => {
             type: String,
             required: true
         },
+        concelho: {
+            type: String,
+            required: true
+        },
+        localizacao: {
+            type: String,
+            required: true
+            /*  longitude: {
+             type: Number,
+             required: true
+             },
+             latitude: {
+             type: Number,
+             required: true
+             }*/
+        },
         estado: {
             type: String,
             default: 'Por Confirmar',
@@ -20,28 +40,28 @@ exports.default = (api, mongoose) => {
         },
         imagens: [
             {
-                name:{
-                    type:String,
-                    required:true
+                name: {
+                    type: String,
+                    required: true
                 },
-                serverName:{
-                    type:String,
-                    required:true
+                serverName: {
+                    type: String,
+                    required: true
                 }
             }
         ],
         feedback: [
             /*{
-                confirmo: {
-                    type: Boolean
-                },
-                apoio: {
-                    type: Boolean
-                },
-                user_id: {
-                    id: String
-                }
-            }*/
+             confirmo: {
+             type: Boolean
+             },
+             apoio: {
+             type: Boolean
+             },
+             user_id: {
+             type: Mixed
+             }
+             }*/
         ],
         denuncia: [
             /*  {
@@ -50,9 +70,6 @@ exports.default = (api, mongoose) => {
              },
              menssagem: {
              type: String
-             },
-             user_id: {
-             id: String
              }
              }*/
         ]

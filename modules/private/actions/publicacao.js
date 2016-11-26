@@ -1,7 +1,10 @@
 // constant with the inputs declaration
 const inputsDeclaration = {
+    user_id: {required: false},
     titulo: {required: true},
     descricao: {required: true},
+    concelho:{required:true},
+    localizacao:{required:true},
     estado: {required: false},
     imagens: {required: false},
     feedback: {required: false},
