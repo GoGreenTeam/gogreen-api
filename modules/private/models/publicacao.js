@@ -17,6 +17,14 @@ exports.default = (api, mongoose) => {
             type: String,
             required: true
         },
+        tipo:{
+            type:String,
+            required:true
+        },
+        protecaoIdentidade:{
+            type:Boolean,
+            required:true
+        },
         concelho: {
             type: String,
             required: true
@@ -35,7 +43,6 @@ exports.default = (api, mongoose) => {
         },
         estado: {
             type: String,
-            default: 'Por Confirmar',
             required: true
         },
         imagens: [
