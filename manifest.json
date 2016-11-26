@@ -1,0 +1,6 @@
+{
+    "name": "gogreen-api",
+    "version": "1.0.0",
+
+    "modules": ["Identify"]
+}
