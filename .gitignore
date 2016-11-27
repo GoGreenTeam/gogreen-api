@@ -2,6 +2,7 @@
 dist/
 temp/
 public/docs/
+public/uploads/
 public/stelar-client*
 package.json
 
