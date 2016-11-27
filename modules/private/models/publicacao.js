@@ -6,7 +6,7 @@ exports.default = (api, mongoose) => {
     const newSchema = new Schema({
 
         user_id: {
-            type: Mixed,
+            type: String,
             required: false
         },
         titulo: {
@@ -17,46 +17,25 @@ exports.default = (api, mongoose) => {
             type: String,
             required: true
         },
-        tipo:{
-            type:String,
-            required:true
+        tipo: {
+            type: String,
+            required: true
         },
-        protecaoIdentidade:{
-            type:Boolean,
-            required:true
+        protecaoIdentidade: {
+            type: Boolean,
+            required: true
         },
         concelho: {
             type: String,
             required: true
         },
-        localizacao: {
-            type: String,
-            required: true
-            /*  longitude: {
-             type: Number,
-             required: true
-             },
-             latitude: {
-             type: Number,
-             required: true
-             }*/
-        },
+        localizacao: [],
         estado: {
             type: String,
             required: true
         },
-        imagens: [
-            {
-                name: {
-                    type: String,
-                    required: true
-                },
-                serverName: {
-                    type: String,
-                    required: true
-                }
-            }
-        ],
+        imagens: [String]
+        ,
         feedback: [
             /*{
              confirmo: {
