@@ -29,35 +29,32 @@ exports.default = (api, mongoose) => {
             type: String,
             required: true
         },
-        localizacao: [],
+        localizacao: {
+            latitude: String,
+            longitude: String
+        },
         estado: {
             type: String,
             required: true
         },
-        imagens: [String]
-        ,
+        imagens: [
+            {
+                nome: String,
+                tamanho: Number
+            }
+        ],
         feedback: [
-            /*{
-             confirmo: {
-             type: Boolean
-             },
-             apoio: {
-             type: Boolean
-             },
-             user_id: {
-             type: Mixed
-             }
-             }*/
+            {
+                confirmo: Boolean,
+                apoio: Boolean,
+                user_id: String
+            }
         ],
         denuncia: [
-            /*  {
-             user_id: {
-             type: Mixed
-             },
-             menssagem: {
-             type: String
-             }
-             }*/
+            {
+                user_id: String,
+                menssagem: String
+            }
         ]
 
     }, {timestamps: true})
