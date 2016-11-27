@@ -7,11 +7,14 @@ const inputsDeclaration = {
     protecaoIdentidade: {required: false, default: false},
     concelho: {required: true},
     localizacao: {required: true},
-    estado: {required: false,  default: 'Por Confirmar'},
+    estado: {required: false, default: 'Por Confirmar'},
     imagens: {required: false},
     feedback: {required: false},
     denuncia: {required: false}
 }
+
+const fs = require('fs');
+const path = require('path');
 
 // constant with the edit input declaration
 const editInputDeclaration = JSON.parse(JSON.stringify(inputsDeclaration))
@@ -116,4 +119,35 @@ module.exports = [{
                 next()
             })
     }
-}]
+}
+    , {
+        name: 'upload',
+        description: 'Upload File',
+
+        inputs: {
+            file: {required: true}
+        },
+
+        run (api, action, next) {
+            //Localização temporaria do ficheiro
+            var source = fs.createReadStream(action.params.file.path);
+            //criar nome unico para ficheiro com timestamp + nome real separados por -_-
+            var current_date = (new Date()).getTime().toString();
+            var fileName = current_date.replace(/\s/g, '_') + "-_-" + action.params.file.name.replace(/\s/g, '_');
+            //Destino do ficheiro
+            var dest = fs.createWriteStream(path.resolve(__dirname) + '/../../../public/uploads/' + fileName);
+            //Move o ficheiro da pasta temporaria para a pasta publica
+            source.pipe(dest);
+            source.on('end', function () {
+                action.response.file = fileName;
+                next();
+            });
+            source.on('error', function (err) {
+                action.response.error = {
+                    msg: "Erro ao carregar o ficheiro"
+                }
+                next();
+            });
+        }
+    }
+]
