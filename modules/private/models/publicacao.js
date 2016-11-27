@@ -43,10 +43,13 @@ exports.default = (api, mongoose) => {
                 tamanho: Number
             }
         ],
-        feedback: [
+        confirmacao: [
             {
-                confirmo: Boolean,
-                apoio: Boolean,
+                user_id: String
+            }
+        ],
+        apoio: [
+            {
                 user_id: String
             }
         ],

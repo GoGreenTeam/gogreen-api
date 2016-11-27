@@ -9,7 +9,8 @@ const inputsDeclaration = {
     localizacao: {required: true},
     estado: {required: false, default: 'Por Confirmar'},
     imagens: {required: false},
-    feedback: {required: false},
+    confirmacao: {required: false},
+    apoio: {required: false},
     denuncia: {required: false}
 }
 
@@ -148,6 +149,108 @@ module.exports = [{
                 }
                 next();
             });
+        }
+    }
+
+    , {
+        name: 'confirmarPublicacao',
+        description: 'Confirmo Publicacao',
+
+        run (api, action, next) {
+
+            api.models.get('publicacao').findById(action.params._id)
+                .catch(error => {
+                    next(error)
+                })
+                .then(resource => {
+                        var user_id = action.params._uid;
+                        var exists = false;
+
+                        for (var i = 0; i < resource.confirmacao.length; i++) {
+                            if (resource.confirmacao[i].user_id == user_id) {
+                                resource.confirmacao.splice(i, 1);
+                                exists = true;
+                            }
+                        }
+
+                        if (!exists) {
+                            resource.confirmacao.push({
+                                user_id: user_id
+                            });
+                        }
+                        resource.save();
+
+                        next()
+                    }
+                )
+
+        }
+    }
+    , {
+        name: 'apoiarPublicacao',
+        description: 'Apoiar Publicacao',
+
+        run (api, action, next) {
+
+            api.models.get('publicacao').findById(action.params._id)
+                .catch(error => {
+                    next(error)
+                })
+                .then(resource => {
+                        var user_id = action.params._uid;
+                        var exists = false;
+
+                        for (var i = 0; i < resource.apoio.length; i++) {
+                            if (resource.apoio[i].user_id == user_id) {
+                                resource.apoio.splice(i, 1);
+                                exists = true;
+                            }
+                        }
+
+                        if (!exists) {
+                            resource.apoio.push({
+                                user_id: user_id
+                            });
+                        }
+                        resource.save();
+
+                        next()
+                    }
+                )
+
+        }
+    }, {
+        name: 'denunciarPublicacao',
+        description: 'Denunciar  Publicacao',
+
+        run (api, action, next) {
+
+            api.models.get('publicacao').findById(action.params._id)
+                .catch(error => {
+                    next(error)
+                })
+                .then(resource => {
+                        var user_id = action.params._uid;
+                        var exists = false;
+
+                        for (var i = 0; i < resource.denuncia.length; i++) {
+                            if (resource.denuncia[i].user_id == user_id) {
+                                resource.denuncia.splice(i, 1);
+                                exists = true;
+                            }
+                        }
+
+                        if (!exists) {
+                            resource.denuncia.push({
+                                user_id: user_id
+                            });
+                        }
+                        resource.save();
+
+                        next()
+                    }
+                )
+
         }
     }
 ]
