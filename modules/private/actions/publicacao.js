@@ -55,7 +55,7 @@ module.exports = [{
                 next(error)
             })
             .then(resources => {
-                action.response.publicacaos = resources
+                action.response.publicacaos = resources.reverse()
                 next()
             })
     }
