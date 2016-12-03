@@ -130,6 +130,10 @@ module.exports = [{
         },
 
         run (api, action, next) {
+            // path do projeto
+            //   api.scope.rootPath
+            // path para a pasta public
+            //   api.config.general.paths.public
             //Localização temporaria do ficheiro
             var source = fs.createReadStream(action.params.file.path);
             //criar nome unico para ficheiro com timestamp + nome real separados por -_-
